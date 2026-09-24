@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>acipus_</title>
+<meta name="description" content="七転び八起き — fall seven times, rise eight.">
+<meta name="theme-color" content="#16110d">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;800&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root {
+    --bg: #16110d;        /* warm dark, same tone as your gym-light photos */
+    --surface: #211912;
+    --line: #3a2c20;
+    --text: #eadfce;      /* bone */
+    --muted: #9a8773;
+    --ember: #d0935a;     /* tungsten lamp glow */
+    --serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+    --sans: "Zen Kaku Gothic New", "Hiragino Sans", system-ui, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; margin: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(ellipse 60% 45% at 18% 30%, rgba(208,147,90,.13), transparent 70%);
+    background-attachment: fixed;
+  }
+
+  .page {
+    min-height: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 3rem);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(2rem, 7vw, 5rem);
+    align-items: center;
+  }
+
+  /* The one bold element: the proverb, set vertically like a hanging scroll */
+  .proverb {
+    writing-mode: vertical-rl;
+    font-family: var(--serif);
+    font-weight: 800;
+    font-size: clamp(3.4rem, 11vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: .08em;
+    color: var(--text);
+    text-shadow: 0 0 40px rgba(208,147,90,.25);
+    user-select: none;
+  }
+  .proverb .rise { color: var(--ember); }
+
+  .body { max-width: 26rem; }
+  .handle {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .handle:hover, .handle:focus-visible { color: var(--ember); }
+  .reading {
+    color: var(--muted);
+    font-size: .95rem;
+    margin-top: .25rem;
+  }
+  .note {
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  .pay {
+    display: block;
+    margin-top: 1.75rem;
+    padding: 1rem 1.25rem;
+    background: var(--ember);
+    color: #1a120b;
+    font: 500 1.05rem var(--sans);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .pay:hover { filter: brightness(1.08); }
+  .pay:active { transform: scale(.98); }
+
+  .alt {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface);
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+  }
+  .qr {
+    flex: none;
+    width: 112px; height: 112px;
+    padding: 8px;
+    background: #f3ebdf;
+    border-radius: 10px;
+  }
+  .qr img, .qr canvas { width: 100% !important; height: 100% !important; display: block; }
+  .alt p { font-size: .9rem; color: var(--muted); }
+  .upi-id {
+    display: block;
+    margin-top: .35rem;
+    font-size: 1rem;
+    color: var(--text);
+    word-break: break-all;
+  }
+  .copy {
+    margin-top: .6rem;
+    padding: .45rem .9rem;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font: 400 .85rem var(--sans);
+    cursor: pointer;
+  }
+  .copy:hover { border-color: var(--ember); }
+
+  .foot {
+    margin-top: 2rem;
+    font-size: .8rem;
+    color: var(--muted);
+  }
+
+  :focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+
+  @media (max-width: 560px) {
+    .page { grid-template-columns: 1fr; gap: 2rem; align-items: start; }
+    .proverb { justify-self: center; font-size: clamp(3rem, 17vw, 4.5rem); }
+    .body { margin: 0 auto; }
+    .alt { flex-direction: column; text-align: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pay { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <div class="proverb" aria-label="七転び八起き">七転び<span class="rise">八起き</span></div>
+
+    <section class="body">
+      <a class="handle" id="handle" href="#" target="_blank" rel="noopener">@acipus_</a>
+      <p class="reading">nana korobi ya oki — fall seven times, rise eight.</p>
+
+      <p class="note">If the journey's worth something to you, you can back it here. Every bit goes into food, gym and the grind.</p>
+
+      <a class="pay" id="pay" href="#">Pay with UPI</a>
+
+      <div class="alt">
+        <div class="qr" id="qr" aria-label="UPI QR code"></div>
+        <div>
+          <p>On a laptop? Scan with any UPI app. Or pay to:</p>
+          <span class="upi-id" id="upiText"></span>
+          <button class="copy" id="copy" type="button">Copy UPI ID</button>
+        </div>
+      </div>
+
+      <p class="foot">Payments go directly to my bank via UPI. No fees, no sign-up.</p>
+    </section>
+  </main>
+
+<script>
+  // ── CONFIG: edit these ─────────────────────────────────
+  const CONFIG = {
+    upiId: "yourname@okaxis",        // your separate UPI ID
+    payeeName: "Kuldeep Kant",       // name shown in the UPI app
+    instagram: "https://www.instagram.com/acipus_/"
+  };
+  // ───────────────────────────────────────────────────────
+
+  const upiLink =
+    "upi://pay?pa=" + encodeURIComponent(CONFIG.upiId) +
+    "&pn=" + encodeURIComponent(CONFIG.payeeName) +
+    "&cu=INR&tn=" + encodeURIComponent("Support acipus_");
+
+  document.getElementById("pay").href = upiLink;
+  document.getElementById("handle").href = CONFIG.instagram;
+  document.getElementById("upiText").textContent = CONFIG.upiId;
+
+  try {
+    new QRCode(document.getElementById("qr"), {
+      text: upiLink, width: 256, height: 256,
+      colorDark: "#16110d", colorLight: "#f3ebdf",
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  } catch (e) {
+    document.getElementById("qr").style.display = "none";
+  }
+
+  const copyBtn = document.getElementById("copy");
+  copyBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(CONFIG.upiId);
+      copyBtn.textContent = "Copied";
+    } catch {
+      copyBtn.textContent = "Copy failed — select the ID above";
+    }
+    setTimeout(() => (copyBtn.textContent = "Copy UPI ID"), 1800);
+  });
+</script>
+</body>
+</html>
